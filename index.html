@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div id="map" style="width: 600px; height: 400px;"></div>
-<script src="webgis/leaflet.ajax.js"></script>
+<script src="leaflet.ajax.js"></script>
 <script>
 	var map = L.map('map').setView([-2.242, 104.928], 10);
 	
@@ -108,7 +108,7 @@ function popUp(f,l){
         l.bindPopup(out.join("<br />"));
     }
 }
-var jsonTest = new L.GeoJSON.AJAX(["webgis/10Meter.geojson","webgis/5Meter.geojson","webgis/1Meter.geojson","webgis/Pemukiman.geojson","webgis/Hutan_Mangrove.geojson"],{onEachFeature:popUp}).addTo(map);
+var jsonTest = new L.GeoJSON.AJAX(["10Meter.geojson","5Meter.geojson","1Meter.geojson","Pemukiman.geojson","Hutan_Mangrove.geojson"],{onEachFeature:popUp}).addTo(map);
 
 </script>
 </script>
