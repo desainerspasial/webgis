@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Pesisir Banyuasin</title>
+
+	 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+     crossorigin=""></script>
+
+</head>
+<body>
+	<div id="map" style="width: 600px; height: 400px;"></div>
+<script src="WEBGIS/JS/leaflet.ajax.js"></script>
+<script>
+	var map = L.map('map').setView([-2.242, 104.928], 10);
+	
+
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+	var marker = L.marker([-2.242, 104.928]).addTo(map);
+
+	var circle = L.circle([-2.3614, 104.90453], {
+    color: 'red',
+    fillColor: '#eb3434',
+    fillOpacity: 0.5,
+    radius: 100
+}).addTo(map);
+
+	var polygon = L.polygon([
+    [-2.3453538176874833, 104.8868243188243],
+    [-2.346424659380092, 104.88626293125076],
+    [-2.3481584013064363, 104.88533153827606],
+    [-2.348413363213038, 104.88565050844966],
+    [-2.3506315294884974, 104.88603327268585],
+    [-2.350861757446287, 104.88650467366425],
+    [-2.3511726317916892, 104.88655831784325],
+    [-2.3516443030800485, 104.88708403079761],
+    [-2.351751501077888, 104.88740589587168],
+    [-2.3520302158337185, 104.88757755724455],
+    [-2.352308930533876, 104.88756682840875],
+    [-2.352135276152475, 104.8930799193851],
+    [-2.3514492090126935, 104.89435665084564],
+    [-2.352135276152475, 104.89478580427776],
+    [-2.352145995954239, 104.89477507547787],
+    [-2.3518558502007516, 104.90048938601294],
+    [-2.3489532618197386, 104.90043525497768],
+    [-2.3486828340003783, 104.9058032496072],
+    [-2.3455944186286546, 104.90655170541093],
+    [-2.345693575711693, 104.90700279738925],
+    [-2.3439448043072724, 104.90738171465104]
+]).addTo(map);
+    polygon.bindPopup("Lahan Sawit I");
+
+    var polygon = L.polygon([
+    [-2.3488201497910444, 104.88555878409005],
+    [-2.3560344518681315, 104.8797506442496],
+    [-2.3568277024007735, 104.8782891062398],
+    [-2.3580175773815637, 104.87682756818513],
+    [-2.3594598486856917, 104.87576299111629],
+    [-2.359892529774509, 104.87670126243977],
+    [-2.3604153526174545, 104.87717039810155],
+    [-2.3608660618128794, 104.87814475677217],
+    [-2.362650868700003, 104.87776583951081],
+    [-2.3632458038108597, 104.87883041657967],
+    [-2.3609381752433087, 104.87929955230489],
+    [-2.3609381752433087, 104.87964238220843],
+    [-2.3602711256603017, 104.87949803277536],
+    [-2.36005478518626, 104.88041826041116],
+    [-2.359856473055484, 104.88045434776942],
+    [-2.3600728135603903, 104.88184371106266],
+    [-2.3557640254495253, 104.88206023522693],
+    [-2.3547724613954677, 104.88536222862349],
+    [-2.353167929074586, 104.88624636890103],
+    [-2.351076625706107, 104.88593962633895],
+    [-2.350734084345545, 104.8856328837937]
+]).addTo(map);
+
+marker.bindPopup("<b>Muara Sungai Banyuasin</b><br>Kabupaten Banyuasin.").openPopup();
+circle.bindPopup("Sungsang IV");
+polygon.bindPopup("Lahan Sawit II");
+
+var popup = L.popup();
+
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent(e.latlng.toString())
+        .openOn(map);
+}
+map.on('click', onMapClick);
+
+L.control.scale().addTo(map);
+
+function popUp(f,l){
+    var out = [];
+    if (f.properties){
+        for(key in f.properties){
+            out.push(key+": "+f.properties[key]);
+        }
+        l.bindPopup(out.join("<br />"));
+    }
+}
+var jsonTest = new L.GeoJSON.AJAX(["WEBGIS/GEOJSON/10Meter.geojson","WEBGIS/GEOJSON/5Meter.geojson","WEBGIS/GEOJSON/1Meter.geojson","WEBGIS/GEOJSON/Pemukiman.geojson","WEBGIS/GEOJSON/Hutan_Mangrove.geojson"],{onEachFeature:popUp}).addTo(map);
+
+</script>
+</script>
+
+</body>
+</html>
