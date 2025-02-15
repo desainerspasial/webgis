@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div id="map" style="width: 600px; height: 400px;"></div>
-<script src="desainerspasial.github.io/webgis/leaflet.ajax.js"></script>
+<script src="WEBGIS/JS/leaflet2.ajax.js"></script>
 <script>
 	var map = L.map('map').setView([-2.242, 104.928], 10);
 	
@@ -108,7 +108,40 @@ function popUp(f,l){
         l.bindPopup(out.join("<br />"));
     }
 }
-var jsonTest = new L.GeoJSON.AJAX(["desainerspasial.github.io/webgis/10Meter.geojson","desainerspasial.github.io/webgis/5Meter.geojson","desainerspasial.github.io/webgis/1Meter.geojson","desainerspasial.github.io/webgis/Pemukiman.geojson","desainerspasial.github.io/webgis/Hutan_Mangrove.geojson"],{onEachFeature:popUp}).addTo(map);
+var jsonTest = new L.GeoJSON.AJAX(["WEBGIS/GEOJSON/1Meter.geojson"],
+    {
+    color: '#00A9E6',
+    fillOpacity: 0.7,    
+    },
+    {onEachFeature:popUp}).addTo(map);
+
+var jsonTest = new L.GeoJSON.AJAX(["WEBGIS/GEOJSON/5Meter.geojson"],
+    {
+    color: '#AAEDFF',
+    fillOpacity: 0.7,    
+    },
+    {onEachFeature:popUp}).addTo(map);
+
+var jsonTest = new L.GeoJSON.AJAX(["WEBGIS/GEOJSON/10Meter.geojson"],
+    {
+    color: '#D0F4FF',
+    fillOpacity: 0.7,    
+    },
+    {onEachFeature:popUp}).addTo(map);
+
+var jsonTest = new L.GeoJSON.AJAX(["WEBGIS/GEOJSON/Pemukiman.geojson"],
+    {
+    color: '#FAC402',
+    fillOpacity: 0.7,    
+    },
+    {onEachFeature:popUp}).addTo(map);
+
+var jsonTest = new L.GeoJSON.AJAX(["WEBGIS/GEOJSON/Hutan_Mangrove.geojson"],
+    {
+    color: '#0C8F03',
+    fillOpacity: 0.7,    
+    },
+    {onEachFeature:popUp}).addTo(map);
 
 </script>
 </script>
